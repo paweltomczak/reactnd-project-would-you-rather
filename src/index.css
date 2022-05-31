@@ -25,7 +25,7 @@ body {
 }
 
 .container {
-  max-width: 120rem;
+  max-width: 95rem;
   margin: 3rem auto;
   background-color: #ecf0f1;
   box-shadow: 1rem 1rem 2rem 0 #95a5a6;
@@ -37,11 +37,16 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #bdc3c7;
+  text-align: center;
+}
+
+.header > * {
+  flex: 1;
 }
 
 .header .logo {
   margin-left: 2rem;
-  font-size: 160%;
+  font-size: 1.6rem;
   font-weight: normal;
   font-family: 'Oswald', sans-serif;
 }
@@ -114,7 +119,12 @@ body {
   margin-top: 1rem;
 }
 
-.sign-in-containter input:hover {
+.sign-in-containter input:disabled {
+  cursor: default;
+  background-color: #bdbfc0;
+}
+
+.sign-in-containter input:not([disabled]):hover {
   background-color: #3498db;
   cursor: pointer;
 }
