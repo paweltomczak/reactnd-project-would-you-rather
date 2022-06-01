@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getQuestions } from '../actions/questions';
 import Loading from './Loading';
+import Question from './Question';
 
 class QuestionsPage extends Component {
   componentDidMount() {
@@ -21,14 +22,18 @@ class QuestionsPage extends Component {
             <div id='content1'>
               <ul>
                 {this.props.ununsweredQuestions.map((question) => (
-                  <li>{question.id}</li>
+                  <li key={question.id}>
+                    <Question id={question.id} />
+                  </li>
                 ))}
               </ul>
             </div>
             <div id='content2'>
               <ul>
                 {this.props.answeredQuestions.map((question) => (
-                  <li>{question.id}</li>
+                  <li key={question.id}>
+                    <Question id={question.id} />
+                  </li>
                 ))}
               </ul>
             </div>
