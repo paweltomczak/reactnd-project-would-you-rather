@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Nav from './Nav';
 import SignIn from './SignIn';
+import QuestionsPage from './QuestionsPage';
 
 import { getUsers } from '../actions/users';
 
@@ -16,7 +17,7 @@ class App extends Component {
         <Nav />
         <div className='content'>
           {(!this.props.loading && this.props.authedUser === null) && <SignIn />}
-          {this.props.authedUser && `Here will be questions after log in`}
+          {this.props.authedUser && <QuestionsPage />}
         </div>
       </div>
     );
