@@ -6,6 +6,7 @@ import SignIn from './SignIn';
 import QuestionsPage from './QuestionsPage';
 
 import { getUsers } from '../actions/users';
+import Loading from './Loading';
 
 class App extends Component {
   componentDidMount() {
@@ -16,7 +17,8 @@ class App extends Component {
       <div className='container'>
         <Nav />
         <div className='content'>
-          {(!this.props.loading && this.props.authedUser === null) && <SignIn />}
+          {this.props.loading && <Loading />}
+          {!this.props.loading && this.props.authedUser === null && <SignIn />}
           {this.props.authedUser && <QuestionsPage />}
         </div>
       </div>

@@ -25,10 +25,19 @@ body {
 }
 
 .container {
+  display: flex;
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: center;
   max-width: 95rem;
   margin: 3rem auto;
   background-color: #ecf0f1;
   box-shadow: 1rem 1rem 2rem 0 #95a5a6;
+}
+
+.container > * {
+  padding: 10px;
+  flex: 1 100%;
 }
 
 .header {
@@ -41,7 +50,7 @@ body {
 }
 
 .header > * {
-  flex: 1;
+  flex: 1 100%;
 }
 
 .header .logo {
@@ -94,9 +103,9 @@ body {
 
 .content {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 20rem;
+  align-items: center;
+  min-height: 20rem;
 }
 
 .sign-in-containter select {
@@ -127,4 +136,57 @@ body {
 .sign-in-containter input:not([disabled]):hover {
   background-color: #3498db;
   cursor: pointer;
+}
+
+.questions-container {
+  padding: 5rem 10rem;
+}
+
+.questions-tabs #content1,
+.questions-tabs #content2 {
+  display: none;
+  padding: 5rem;
+}
+
+.questions-tabs #tab1:checked ~ #content1,
+.questions-tabs #tab2:checked ~ #content2 {
+  display: block;
+}
+
+.questions-tabs input {
+  display: none;
+}
+
+.questions-tabs input:checked + label {
+  background-color: #bdbfc0;
+}
+
+.questions-tabs label {
+  padding: 1rem 10rem;
+}
+
+.questions-tabs label:hover {
+  cursor: pointer;
+  background-color: #3498db;
+}
+
+
+.loading-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.loading {
+  border-radius: 50%;
+  border-top: 2px solid #3498db;
+  width: 50px;
+  height: 50px;
+  animation: spin .8s linear infinite;
+  z-index: 999;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

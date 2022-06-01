@@ -1,29 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getQuestions } from '../actions/questions';
+import Loading from './Loading';
 
 class QuestionsPage extends Component {
   componentDidMount() {
     this.props.dispatch(getQuestions());
   }
   render() {
-    console.log(this.props);
     return (
-      <div>
-        <h3>Unanswered Questions</h3>
-        <ul>
-          {!this.props.loading &&
-            this.props.ununsweredQuestions.map((question) => (
-              <li>{question.id}</li>
-            ))}
-        </ul>
-        <h3>Answered Questions</h3>
-        <ul>
-          {!this.props.loading &&
-            this.props.answeredQuestions.map((question) => (
-              <li>{question.id}</li>
-            ))}
-        </ul>
+      <div className='questions-container'>
+        {this.props.loading ? (
+          <Loading />
+        ) : (
+          <div className='questions-tabs'>
+            <input id='tab1' type='radio' name='tabs' defaultChecked />
+            <label htmlFor='tab1'>Unanswered Questions</label>
+            <input id='tab2' type='radio' name='tabs' />
+            <label htmlFor='tab2'>Answered Questions</label>
+            <div id='content1'>
+              <ul>
+                {this.props.ununsweredQuestions.map((question) => (
+                  <li>{question.id}</li>
+                ))}
+              </ul>
+            </div>
+            <div id='content2'>
+              <ul>
+                {this.props.answeredQuestions.map((question) => (
+                  <li>{question.id}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
