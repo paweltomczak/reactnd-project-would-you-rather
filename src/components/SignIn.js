@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
+import Loading from './Loading';
 
 class SignIn extends Component {
   constructor(props) {
@@ -20,22 +21,26 @@ class SignIn extends Component {
   render() {
     return (
       <div className='sign-in-containter'>
-        <form onSubmit={this.handleSubmit}>
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value=''>Select a user</option>
-            {this.props.users.map((user) => (
-              <option key={user.id} value={user.id}>
-                {user.name}
-              </option>
-            ))}
-          </select>
-          <input
-            type='submit'
-            value='Sign In'
-            onSubmit={this.handleSubmit}
-            disabled={!this.state.value}
-          />
-        </form>
+        {this.props.loading ? (
+          <Loading />
+        ) : (
+          <form onSubmit={this.handleSubmit}>
+            <select value={this.state.value} onChange={this.handleChange}>
+              <option value=''>Select a user</option>
+              {this.props.users.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.name}
+                </option>
+              ))}
+            </select>
+            <input
+              type='submit'
+              value='Sign In'
+              onSubmit={this.handleSubmit}
+              disabled={!this.state.value}
+            />
+          </form>
+        )}
       </div>
     );
   }
@@ -43,6 +48,7 @@ class SignIn extends Component {
 
 function mapStateToProps({ users }) {
   return {
+    loading: Object.keys(users).length === 0,
     users: Object.keys(users).map((key) => users[key]),
   };
 }

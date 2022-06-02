@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
 
 import Nav from './Nav';
 import SignIn from './SignIn';
 import QuestionsPage from './QuestionsPage';
+import AddQuestion from './AddQuestion';
+import Leaderboard from './Leaderboard';
 
 import { getUsers } from '../actions/users';
-import Loading from './Loading';
 
 class App extends Component {
   componentDidMount() {
@@ -17,19 +19,28 @@ class App extends Component {
       <div className='container'>
         <Nav />
         <div className='content'>
-          {this.props.loading && <Loading />}
-          {!this.props.loading && this.props.authedUser === null && <SignIn />}
-          {this.props.authedUser && <QuestionsPage />}
+          <Routes>
+            {this.props.authedUser === null && (
+              <Route path='/' element={<SignIn />} />
+            )}
+            {this.props.authedUser && (
+              <>
+                <Route path='/' element={<QuestionsPage />} />
+                <Route path='/add' element={<AddQuestion />} />
+                <Route path='/leaderboard' element={<Leaderboard />} />
+              </>
+            )}
+            <Route path='*' element={<SignIn />} />
+          </Routes>
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps({ users, authedUser }) {
+function mapStateToProps({ authedUser }) {
   return {
     authedUser,
-    loading: Object.keys(users).length === 0,
   };
 }
 

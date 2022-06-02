@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 class Nav extends Component {
   render() {
@@ -8,9 +9,30 @@ class Nav extends Component {
       <header className='header'>
         <div className='logo'>Would you rather?</div>
         <div className='nav'>
-          <a href='/'>Home</a>
-          <a href='/'>New Question</a>
-          <a href='/'>Leader Board</a>
+          <NavLink
+            to='/'
+            className={({ isActive }) =>
+              isActive && loggedInUser ? 'nav-active' : ''
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to='/add'
+            className={({ isActive }) =>
+              isActive && loggedInUser ? 'nav-active' : ''
+            }
+          >
+            New Question
+          </NavLink>
+          <NavLink
+            to='/leaderboard'
+            className={({ isActive }) =>
+              isActive && loggedInUser ? 'nav-active' : ''
+            }
+          >
+            Leader Board
+          </NavLink>
         </div>
         <div className='user-nav'>
           {loggedInUser && (

@@ -40,6 +40,8 @@ body {
   flex: 1 100%;
 }
 
+/* HEADER */
+
 .header {
   height: 5rem;
   display: flex;
@@ -67,13 +69,19 @@ body {
 .header .nav a {
   color: #34495e;
   text-decoration: none;
-  padding: 1rem;
+  padding: 1.65rem 1rem;
   font-size: 1.1rem;
 }
 
 .header .nav a:hover {
   color: #3498db;
   font-weight: 600;
+}
+
+.header .nav .nav-active {
+  color: #3498db;
+  font-weight: 600;
+  border-bottom: .2rem solid #3498db;
 }
 
 .user-nav {
@@ -151,7 +159,7 @@ body {
 .questions-tabs #content1,
 .questions-tabs #content2 {
   display: none;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .questions-tabs #tab1:checked ~ #content1,
@@ -164,16 +172,18 @@ body {
 }
 
 .questions-tabs input:checked + label {
-  background-color: #bdc3c7;
+  border-bottom: .2rem solid #3498db;
+  color: #3498db;
 }
 
 .questions-tabs label {
   padding: 1rem 10rem;
+  text-transform: uppercase;
 }
 
 .questions-tabs label:hover {
   cursor: pointer;
-  background-color: #3498db;
+  color: #3498db;
 }
 
 /* QUESTION */
