@@ -20,6 +20,11 @@ class QuestionsPage extends Component {
             <input id='tab2' type='radio' name='tabs' />
             <label htmlFor='tab2'>Answered Questions</label>
             <div id='content1'>
+              {!this.props.ununsweredQuestions.length && (
+                <h3 className='info'>
+                  Congrats! You have answered for all questions.
+                </h3>
+              )}
               <ul>
                 {this.props.ununsweredQuestions.map((question) => (
                   <li key={question.id}>
@@ -29,6 +34,9 @@ class QuestionsPage extends Component {
               </ul>
             </div>
             <div id='content2'>
+              {!this.props.answeredQuestions.length && (
+                <h3 className='info'>Don't be shy. Answer a few questions.</h3>
+              )}
               <ul>
                 {this.props.answeredQuestions.map((question) => (
                   <li key={question.id}>

@@ -1,8 +1,8 @@
-import { _getQuestions } from "../utils/_DATA";
+import { _getQuestions } from '../utils/_DATA';
 
 export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS';
 
-export function receiveQuestions(questions) {
+function receiveQuestions(questions) {
   return {
     type: GET_ALL_QUESTIONS,
     questions,
@@ -10,9 +10,9 @@ export function receiveQuestions(questions) {
 }
 
 export function getQuestions() {
-  return dispatch => {
-    return _getQuestions().then(questions => {
-      dispatch(receiveQuestions(questions))
-    })
-  }
+  return (dispatch) => {
+    return _getQuestions().then((questions) => {
+      dispatch(receiveQuestions(questions));
+    });
+  };
 }
