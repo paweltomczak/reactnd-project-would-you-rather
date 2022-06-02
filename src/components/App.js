@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
 
 import Nav from './Nav';
 import SignIn from './SignIn';
 import QuestionsPage from './QuestionsPage';
 import AddQuestion from './AddQuestion';
 import Leaderboard from './Leaderboard';
+import QuestionDetails from './QuestionDetails';
 
 import { getUsers } from '../actions/users';
 
@@ -16,24 +17,27 @@ class App extends Component {
   }
   render() {
     return (
-      <div className='container'>
-        <Nav />
-        <div className='content'>
-          <Routes>
+      <Router>
+        <div className='container'>
+          <Nav />
+          <div className='content'>
             {this.props.authedUser === null && (
-              <Route path='/' element={<SignIn />} />
+              <Route path='/' component={SignIn} />
             )}
             {this.props.authedUser && (
-              <>
-                <Route path='/' element={<QuestionsPage />} />
-                <Route path='/add' element={<AddQuestion />} />
-                <Route path='/leaderboard' element={<Leaderboard />} />
-              </>
+              <div>
+                <Route path='/' exact component={QuestionsPage} />
+                <Route path='/add' component={AddQuestion} />
+                <Route path='/leaderboard' component={Leaderboard} />
+                <Route path='/questions/:qid' component={QuestionDetails} />
+              </div>
             )}
-            <Route path='*' element={<SignIn />} />
-          </Routes>
+            <Route path='*'>
+              <Redirect to='/' />
+            </Route>
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }

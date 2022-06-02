@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Question extends Component {
   render() {
-    const { author, authorAvatar } = this.props;
+    const { author, authorAvatar, id } = this.props;
     const { optionOne } = this.props.question;
     return (
       <div className='question-container'>
@@ -19,7 +20,7 @@ class Question extends Component {
         <div className='question-details'>
           <h3>Would you rather</h3>
           <p>...{optionOne.text}...</p>
-          <button>View Poll</button>
+          <Link to={`/questions/${id}`}>View Poll</Link>
         </div>
       </div>
     );
