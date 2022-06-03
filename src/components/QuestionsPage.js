@@ -53,7 +53,9 @@ class QuestionsPage extends Component {
 }
 
 function mapStateToProps({ questions, authedUser }) {
-  const questionsArr = Object.keys(questions).map((key) => questions[key]);
+  const questionsArr = Object.keys(questions)
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+    .map((key) => questions[key]);
   return {
     loading: Object.keys(questions).length === 0,
     answeredQuestions: questionsArr.filter(
