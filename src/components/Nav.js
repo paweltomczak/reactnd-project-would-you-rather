@@ -6,8 +6,7 @@ class Nav extends Component {
   render() {
     const { loggedInUser } = this.props;
     return (
-      <header className='header'>
-        <div className='logo'>Would you rather?</div>
+      <nav className='header'>
         <div className='nav'>
           <NavLink
             to='/'
@@ -40,7 +39,7 @@ class Nav extends Component {
             </Fragment>
           )}
         </div>
-      </header>
+      </nav>
     );
   }
 }

@@ -30,7 +30,7 @@ class AddQuestion extends Component {
       <div className='question-container-new'>
         <h3>Create New Question</h3>
         <div className='question-details-new'>
-          <h3>Would you rather</h3>
+          <h4>Would you rather</h4>
           <form onSubmit={this.handleSubmit}>
             <label>
               <input
@@ -42,7 +42,7 @@ class AddQuestion extends Component {
                 autoComplete='off'
               />
             </label>
-            <span style={{ display: 'block' }}>-- OR --</span>
+            <span>OR</span>
             <label>
               <input
                 type='text'

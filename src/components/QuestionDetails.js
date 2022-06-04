@@ -34,11 +34,6 @@ class QuestionDetails extends Component {
     ).toFixed(1);
     return (
       <div className='question-container'>
-        <div className='question-author'>
-          <h3>
-            {this.props.isVoted ? `Asked by ${author}` : `${author} asks:`}
-          </h3>
-        </div>
         <div
           className='question-image'
           style={{
@@ -47,7 +42,11 @@ class QuestionDetails extends Component {
         ></div>
         {this.props.isVoted ? (
           <div className='question-details'>
-            <h3>Results:</h3>
+            <div className='question-author'>
+              <h3>
+                {this.props.isVoted ? `Asked by ${author}` : `${author} asks:`}
+              </h3>
+            </div>
             <div className='question-details-results'>
               <div
                 className={
@@ -89,27 +88,31 @@ class QuestionDetails extends Component {
           </div>
         ) : (
           <div className='question-details'>
+            <div className='question-author'>
+              <h3>
+                {this.props.isVoted ? `Asked by ${author}` : `${author} asks:`}
+              </h3>
+            </div>
             <h3>Would you rather</h3>
             <form onSubmit={this.handleSubmit}>
-              <label>
+              <div className='question-details-options'>
                 <input
                   type='radio'
                   name='OptionOne'
+                  id='one'
                   value='optionOne'
                   onChange={this.handleOption}
                 />
-                ...{optionOne.text}...
-              </label>
-              <span style={{ display: 'block' }}>-- OR --</span>
-              <label>
+                <label htmlFor='one'>{optionOne.text}</label>
                 <input
                   type='radio'
                   name='OptionOne'
+                  id='two'
                   value='optionTwo'
                   onChange={this.handleOption}
                 />
-                ...{optionTwo.text}...
-              </label>
+                <label htmlFor='two'>{optionTwo.text}</label>
+              </div>
               <button type='submit' disabled={!this.state.optionValue}>
                 Submit
               </button>

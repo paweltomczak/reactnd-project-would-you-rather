@@ -8,9 +8,6 @@ class Question extends Component {
     const { optionOne } = this.props.question;
     return (
       <div className='question-container'>
-        <div className='question-author'>
-          <h3>{author} asks:</h3>
-        </div>
         <div
           className='question-image'
           style={{
@@ -18,6 +15,9 @@ class Question extends Component {
           }}
         ></div>
         <div className='question-details'>
+          <div className='question-author'>
+            <h3>{author} asks:</h3>
+          </div>
           <h3>Would you rather</h3>
           <p>...{optionOne.text}...</p>
           <Link to={`/questions/${id}`}>View Poll</Link>

@@ -21,29 +21,23 @@ class QuestionsPage extends Component {
             <label htmlFor='tab2'>Answered Questions</label>
             <div id='content1'>
               {!this.props.ununsweredQuestions.length && (
-                <h3 className='info'>
-                  Congrats! You have answered for all questions.
-                </h3>
+                <div className='question-info'>
+                  <h3>Congrats! You have answered for all questions.</h3>
+                </div>
               )}
-              <ul>
-                {this.props.ununsweredQuestions.map((question) => (
-                  <li key={question.id}>
-                    <Question id={question.id} />
-                  </li>
-                ))}
-              </ul>
+              {this.props.ununsweredQuestions.map((question) => (
+                <Question id={question.id} key={question.id} />
+              ))}
             </div>
             <div id='content2'>
               {!this.props.answeredQuestions.length && (
-                <h3 className='info'>Don't be shy. Answer a few questions.</h3>
+                <div className='question-info'>
+                  <h3>Don't be shy. Answer a few questions.</h3>
+                </div>
               )}
-              <ul>
-                {this.props.answeredQuestions.map((question) => (
-                  <li key={question.id}>
-                    <Question id={question.id} />
-                  </li>
-                ))}
-              </ul>
+              {this.props.answeredQuestions.map((question) => (
+                <Question id={question.id} key={question.id} />
+              ))}
             </div>
           </div>
         )}
