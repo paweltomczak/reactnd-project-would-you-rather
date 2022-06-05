@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getQuestions } from '../actions/questions';
 import Loading from './Loading';
 import Question from './Question';
 
 class QuestionsPage extends Component {
-  componentDidMount() {
-    this.props.dispatch(getQuestions());
-  }
   render() {
     return (
       <div className='questions-container'>
-        {this.props.loading ? (
+        {this.props.isLoading ? (
           <Loading />
         ) : (
           <div className='questions-tabs'>
@@ -46,12 +42,12 @@ class QuestionsPage extends Component {
   }
 }
 
-function mapStateToProps({ questions, authedUser }) {
+function mapStateToProps({ questions, authedUser, isLoading }) {
   const questionsArr = Object.keys(questions)
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
     .map((key) => questions[key]);
   return {
-    loading: Object.keys(questions).length === 0,
+    isLoading,
     answeredQuestions: questionsArr.filter(
       (question) =>
         question.optionOne.votes.includes(authedUser) ||

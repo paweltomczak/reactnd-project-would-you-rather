@@ -19,7 +19,7 @@ class Question extends Component {
             <h3>{author} asks:</h3>
           </div>
           <h3>Would you rather</h3>
-          <p>...{optionOne.text}...</p>
+          <p>{optionOne.text}...</p>
           <Link to={`/questions/${id}`}>View Poll</Link>
         </div>
       </div>

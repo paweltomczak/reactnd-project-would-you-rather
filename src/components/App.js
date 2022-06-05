@@ -14,11 +14,11 @@ import AddQuestion from './AddQuestion';
 import Leaderboard from './Leaderboard';
 import QuestionDetails from './QuestionDetails';
 
-import { getUsers } from '../actions/users';
+import { setInitialData } from '../actions/shared';
 
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch(getUsers());
+    this.props.dispatch(setInitialData());
   }
   render() {
     return (
@@ -27,7 +27,9 @@ class App extends Component {
           <Nav />
           <header>
             <h1>Would you rather?</h1>
-            <p>Would you rather is a game when you can answer or ask questions.</p>
+            <p>
+              Would you rather is a game when you can answer or ask questions.
+            </p>
           </header>
           <div className='content'>
             {this.props.authedUser === null && (

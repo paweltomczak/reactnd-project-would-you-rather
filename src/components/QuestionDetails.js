@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { handleSaveQuestionAnswer } from '../actions/shared';
+import Loading from './Loading';
 
 class QuestionDetails extends Component {
   constructor(props) {
@@ -33,101 +34,116 @@ class QuestionDetails extends Component {
       100
     ).toFixed(1);
     return (
-      <div className='question-container'>
-        <div
-          className='question-image'
-          style={{
-            backgroundImage: `url(${avatarURL})`,
-          }}
-        ></div>
-        {this.props.isVoted ? (
-          <div className='question-details'>
-            <div className='question-author'>
-              <h3>
-                {this.props.isVoted ? `Asked by ${author}` : `${author} asks:`}
-              </h3>
-            </div>
-            <div className='question-details-results'>
-              <div
-                className={
-                  optionOne.votes.includes(authedUser) ? 'your-answer' : ''
-                }
-              >
-                <p>Would you rather {optionOne.text}</p>
-                <div className='question-details-precentage'>
-                  <span
-                    style={{
-                      width: `${
-                        optionOnePrecentage > 0 ? optionOnePrecentage : '100'
-                      }%`,
-                      backgroundColor: optionOnePrecentage < 1 && '#d3d3d3',
-                    }}
-                  >{`${optionOnePrecentage}%`}</span>
-                </div>
-                <span>{`${optionOne.votes.length} out of ${allVotes} votes`}</span>
-              </div>
-              <div
-                className={
-                  optionTwo.votes.includes(authedUser) ? 'your-answer' : ''
-                }
-              >
-                <p>Would you rather {optionTwo.text}</p>
-                <div className='question-details-precentage'>
-                  <span
-                    style={{
-                      width: `${
-                        optionTwoPrecentage > 0 ? optionTwoPrecentage : '100'
-                      }%`,
-                      backgroundColor: optionTwoPrecentage < 1 && '#d3d3d3',
-                    }}
-                  >{`${optionTwoPrecentage}%`}</span>
-                </div>
-                <span>{`${optionTwo.votes.length} out of ${allVotes} votes`}</span>
-              </div>
-            </div>
-          </div>
+      <Fragment>
+        {this.props.isLoading ? (
+          <Loading />
         ) : (
-          <div className='question-details'>
-            <div className='question-author'>
-              <h3>
-                {this.props.isVoted ? `Asked by ${author}` : `${author} asks:`}
-              </h3>
-            </div>
-            <h3>Would you rather</h3>
-            <form onSubmit={this.handleSubmit}>
-              <div className='question-details-options'>
-                <input
-                  type='radio'
-                  name='OptionOne'
-                  id='one'
-                  value='optionOne'
-                  onChange={this.handleOption}
-                />
-                <label htmlFor='one'>{optionOne.text}</label>
-                <input
-                  type='radio'
-                  name='OptionOne'
-                  id='two'
-                  value='optionTwo'
-                  onChange={this.handleOption}
-                />
-                <label htmlFor='two'>{optionTwo.text}</label>
+          <div className='question-container'>
+            <div
+              className='question-image'
+              style={{
+                backgroundImage: `url(${avatarURL})`,
+              }}
+            ></div>
+            {this.props.isVoted ? (
+              <div className='question-details'>
+                <div className='question-author'>
+                  <h3>
+                    {this.props.isVoted
+                      ? `Asked by ${author}`
+                      : `${author} asks:`}
+                  </h3>
+                </div>
+                <div className='question-details-results'>
+                  <div
+                    className={
+                      optionOne.votes.includes(authedUser) ? 'your-answer' : ''
+                    }
+                  >
+                    <p>Would you rather {optionOne.text}</p>
+                    <div className='question-details-precentage'>
+                      <span
+                        style={{
+                          width: `${
+                            optionOnePrecentage > 0
+                              ? optionOnePrecentage
+                              : '100'
+                          }%`,
+                          backgroundColor: optionOnePrecentage < 1 && '#d3d3d3',
+                        }}
+                      >{`${optionOnePrecentage}%`}</span>
+                    </div>
+                    <span>{`${optionOne.votes.length} out of ${allVotes} votes`}</span>
+                  </div>
+                  <div
+                    className={
+                      optionTwo.votes.includes(authedUser) ? 'your-answer' : ''
+                    }
+                  >
+                    <p>Would you rather {optionTwo.text}</p>
+                    <div className='question-details-precentage'>
+                      <span
+                        style={{
+                          width: `${
+                            optionTwoPrecentage > 0
+                              ? optionTwoPrecentage
+                              : '100'
+                          }%`,
+                          backgroundColor: optionTwoPrecentage < 1 && '#d3d3d3',
+                        }}
+                      >{`${optionTwoPrecentage}%`}</span>
+                    </div>
+                    <span>{`${optionTwo.votes.length} out of ${allVotes} votes`}</span>
+                  </div>
+                </div>
               </div>
-              <button type='submit' disabled={!this.state.optionValue}>
-                Submit
-              </button>
-            </form>
+            ) : (
+              <div className='question-details'>
+                <div className='question-author'>
+                  <h3>
+                    {this.props.isVoted
+                      ? `Asked by ${author}`
+                      : `${author} asks:`}
+                  </h3>
+                </div>
+                <h3>Would you rather</h3>
+                <form onSubmit={this.handleSubmit}>
+                  <div className='question-details-options'>
+                    <input
+                      type='radio'
+                      name='OptionOne'
+                      id='one'
+                      value='optionOne'
+                      onChange={this.handleOption}
+                    />
+                    <label htmlFor='one'>{optionOne.text}</label>
+                    <input
+                      type='radio'
+                      name='OptionOne'
+                      id='two'
+                      value='optionTwo'
+                      onChange={this.handleOption}
+                    />
+                    <label htmlFor='two'>{optionTwo.text}</label>
+                  </div>
+                  <button type='submit' disabled={!this.state.optionValue}>
+                    Submit
+                  </button>
+                </form>
+              </div>
+            )}
           </div>
         )}
-      </div>
+      </Fragment>
     );
   }
 }
 
-function mapStateToProps({ questions, authedUser, users }, props) {
+function mapStateToProps({ questions, authedUser, users, isLoading }, props) {
   const { qid } = props.match.params;
   const questionDetails = questions[qid];
   return {
+    isLoading,
     authedUser,
     author: questionDetails ? users[questionDetails.author].name : null,
     avatarURL: questionDetails ? users[questionDetails.author].avatarURL : null,

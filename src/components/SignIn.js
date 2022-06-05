@@ -21,7 +21,7 @@ class SignIn extends Component {
   render() {
     return (
       <div className='sign-in-containter'>
-        {this.props.loading ? (
+        {this.props.isLoading ? (
           <Loading />
         ) : (
           <Fragment>
@@ -49,9 +49,9 @@ class SignIn extends Component {
   }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, isLoading }) {
   return {
-    loading: Object.keys(users).length === 0,
+    isLoading,
     users: Object.keys(users).map((key) => users[key]),
   };
 }

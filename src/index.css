@@ -20,7 +20,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   line-height: 1.6;
-  letter-spacing: .01rem;
+  letter-spacing: 0.01rem;
   color: #2c3e50;
   min-height: 100vh;
 }
@@ -142,7 +142,7 @@ header p {
   grid-auto-flow: row;
   align-items: center;
   align-content: center;
-  margin: 1rem auto;
+  margin: 2rem auto;
   justify-content: center;
   justify-items: center;
   background-color: #ecfcff;
@@ -192,7 +192,7 @@ header p {
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 700;
-  letter-spacing: .05rem;
+  letter-spacing: 0.05rem;
 }
 
 .sign-in-containter input:disabled {
@@ -222,7 +222,7 @@ header p {
   display: grid;
   width: 65%;
   border-radius: 3rem;
-  margin: 1rem auto;
+  margin: 2rem auto;
   min-height: 25rem;
   font-size: 1.1rem;
   text-transform: uppercase;
@@ -232,7 +232,6 @@ header p {
 .questions-tabs #content1,
 .questions-tabs #content2 {
   display: none;
-  padding: 1rem 0;
 }
 
 .questions-tabs #tab1:checked ~ #content1,
@@ -271,7 +270,7 @@ header p {
   grid-template-columns: 0.7fr 1.3fr;
   gap: 0px 0px;
   align-items: center;
-  margin: 1rem auto;
+  margin: 2rem auto;
   justify-content: center;
   justify-items: center;
   background-color: #ecfcff;
@@ -285,7 +284,7 @@ header p {
   grid-template-columns: 1fr;
   grid-template-rows: 0.4fr 1fr;
   align-items: center;
-  margin: 1rem auto;
+  margin: 2rem auto;
   padding-bottom: 4rem;
   justify-content: center;
   justify-items: center;
@@ -329,7 +328,7 @@ header p {
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 700;
-  letter-spacing: .05rem;
+  letter-spacing: 0.05rem;
 }
 
 .question-details-new button:disabled {
@@ -377,7 +376,7 @@ header p {
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 600;
-  letter-spacing: .05rem;
+  letter-spacing: 0.05rem;
 }
 
 .question-details button {
@@ -392,7 +391,7 @@ header p {
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 700;
-  letter-spacing: .05rem;
+  letter-spacing: 0.05rem;
 }
 
 .question-details button:disabled {
@@ -405,10 +404,10 @@ header p {
   cursor: pointer;
 }
 
-.question-details input[type="radio"] {
-    width: 3rem;
-    height: 1.5rem;
-    vertical-align: middle;
+.question-details input[type='radio'] {
+  width: 3rem;
+  height: 1.5rem;
+  vertical-align: middle;
 }
 
 .question-details-results,
@@ -433,7 +432,7 @@ header p {
   width: 35rem;
 }
 
-.question-details-options input[type="radio"] {
+.question-details-options input[type='radio'] {
   display: none;
 }
 
@@ -451,7 +450,7 @@ header p {
 }
 
 .question-details-results .your-answer {
-  border: 0.2rem solid #2ECC71;
+  border: 0.2rem solid #2ecc71;
   position: relative;
   background-color: #2ecc711f;
 }
@@ -465,7 +464,7 @@ header p {
   padding: 1.2em 0.65em;
   color: #fff;
   background-color: #3498db;
-  font-size: .7rem;
+  font-size: 0.7rem;
   font-weight: normal;
   text-transform: uppercase;
   line-height: 1rem;
@@ -490,12 +489,79 @@ header p {
   line-height: 3rem;
 }
 
+/* LEADERBOARD */
+
+.leaderboard {
+  display: block;
+  width: 100%;
+}
+
+.leaderboard h1 {
+  font-size: 2rem;
+  color: #fff;
+  margin-top: 0.7rem;
+  text-transform: uppercase;
+}
+
+.leaderboard-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+  background-color: #ecfcff;
+  border-radius: 3rem;
+  min-height: 25rem;
+  margin: 2rem auto;
+  align-items: center;
+  width: 65%;
+}
+
+.leaderboard-user-image {
+  grid-area: 1 / 1 / 2 / 2;
+  background-color: #bdc3c7;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+  background-size: cover;
+  background-position: top center;
+  width: 300px;
+  height: 100%;
+}
+
+.leaderboard-user-details {
+  grid-area: 1 / 2 / 2 / 3;
+  font-size: 1.4rem;
+  line-height: 3.5rem;
+}
+
+.leaderboard-user-details p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 3rem;
+}
+
+.leaderboard-user-details span {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.leaderboard-user-score {
+  grid-area: 1 / 3 / 2 / 4;
+}
+
+.leaderboard-user-score span {
+  display: block;
+  font-size: 4rem;
+  font-weight: 700;
+}
+
 /* LOADING */
 
 .loading-container {
   position: relative;
   display: flex;
   justify-content: center;
+  min-height: 25rem;
+  align-items: center;
 }
 
 .loading {
@@ -503,11 +569,15 @@ header p {
   border-top: 2px solid #3498db;
   width: 50px;
   height: 50px;
-  animation: spin .8s linear infinite;
+  animation: spin 0.8s linear infinite;
   z-index: 999;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
