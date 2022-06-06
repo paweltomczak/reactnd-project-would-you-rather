@@ -216,7 +216,8 @@ header p {
   list-style-type: none;
 }
 
-.question-info {
+.question-info,
+.info-container {
   padding: 10rem;
   background-color: #ecfcff;
   display: grid;

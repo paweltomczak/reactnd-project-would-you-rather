@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
   Switch,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -13,6 +12,7 @@ import QuestionsPage from './QuestionsPage';
 import AddQuestion from './AddQuestion';
 import Leaderboard from './Leaderboard';
 import QuestionDetails from './QuestionDetails';
+import NotFound from './NotFound';
 
 import { setInitialData } from '../actions/shared';
 
@@ -42,12 +42,12 @@ class App extends Component {
                   <Route path='/add' component={AddQuestion} />
                   <Route path='/leaderboard' component={Leaderboard} />
                   <Route path='/questions/:qid' component={QuestionDetails} />
+                  <Route path='*'>
+                    <NotFound />
+                  </Route>
                 </Switch>
               </Fragment>
             )}
-            <Route path='*'>
-              <Redirect to='/' />
-            </Route>
           </div>
         </div>
       </Router>

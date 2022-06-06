@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { handleSaveQuestionAnswer } from '../actions/shared';
 import Loading from './Loading';
+import NotFound from './NotFound';
 
 class QuestionDetails extends Component {
   constructor(props) {
@@ -22,7 +23,10 @@ class QuestionDetails extends Component {
     dispatch(handleSaveQuestionAnswer(authedUser, id, answer));
   };
   render() {
-    const { author, avatarURL, authedUser } = this.props;
+    const { author, avatarURL, authedUser, questionDetails } = this.props;
+    if (questionDetails === null) {
+      return <NotFound fromDetails={true} />;
+    }
     const { optionOne, optionTwo } = this.props.questionDetails;
     const allVotes = optionOne.votes.length + optionTwo.votes.length;
     const optionOnePrecentage = (
@@ -141,14 +145,14 @@ class QuestionDetails extends Component {
 
 function mapStateToProps({ questions, authedUser, users, isLoading }, props) {
   const { qid } = props.match.params;
-  const questionDetails = questions[qid];
+  const questionDetails = qid ? questions[qid] : null;
   return {
     isLoading,
     authedUser,
     author: questionDetails ? users[questionDetails.author].name : null,
     avatarURL: questionDetails ? users[questionDetails.author].avatarURL : null,
-    questionDetails,
-    isVoted: questions
+    questionDetails: questionDetails ? questionDetails : null,
+    isVoted: questions[qid]
       ? questions[qid].optionOne.votes.includes(authedUser) ||
         questions[qid].optionTwo.votes.includes(authedUser)
       : null,
