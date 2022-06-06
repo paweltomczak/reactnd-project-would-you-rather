@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Would You Rather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Would You Rather is a game built in React and Redux where the user can vote for one of the two questions in the poll. Each answer is giving the user 1 point. User can also creates own Poll with two given questions that also is scored for 1 point.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+Using npm
 
-### `yarn start`
+```
+git clone https://github.com/paweltomczak/reactnd-project-would-you-rather.git
+npm install
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Using yarn
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+git clone https://github.com/paweltomczak/reactnd-project-would-you-rather.git
+yarn install
+yarn start
+```
 
-### `yarn test`
+## App Sections
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Section       | Description   |
+| ------------- | ------------- |
+| Sign In  | This section depends on `authedUser` state. If the user is not authorised (`authedUser` is `null`), user needs to select which user needs to be Signed In. There are 3 users taken from the 'fake' database ([_DATA.js](src/utils/_DATA.js)) that user can select (`users` state). If the user is logged in ( `authedUser` is populated with the user ID), then the Questions Page is shown. |
+| Questions Page  | This section contains all questions taken from the `questions` state that are separate into two category. One has filtered Unanswered questions for the `authedUser`. The second has filtered Answered questions for the `authedUser`. Each of the questions/polls can be accessed by clicking the **VIEW POLL** button. |
+| Question Details | Question Details lives under `/questions/:id` path. If the `authedUser` has not yet voted (based on `isVoted` prop) for particular question, two options are shown and user can select only one of them. If the user voted for the question, the details of the answers is calculated and votes for each answer are showing along with precentage number off of it’s total value. |
+| New Question | New Question section path is `/add`. It contains two inputs. One is for Option One and second one is for Option Two. User needs to fill both of them in order to add the question to the 'fake' database. |
+| Leaderboard | Leaderboard path is `/leaderboard`. Section shows the list of all users with the Score of each of them. Score is calculated of the sum of Answered Questions and Created questions. Users are sorted in descending order based of that score. |
+| Navigation | Navigation contains 3 links that user can easily changing : **HOME**, **NEW QUESTIONS**, **LEADER BOARD** and based on `authedUser` the User Navigation which is showing the user's `name` and `avatar` and link to **LOGOUT** |
